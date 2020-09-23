@@ -207,12 +207,12 @@ Func _Function_Receiver_Connector($sFuncName)
 	#Region IDB_CNMR
 	If $sgDefault_Receiver_Function_CNMR And $DEBUG_CONNECTOR Then
 		_debWar_CNMR('CONNECTOR')
-		_debWar_CNMR('Внимание', 'была перерегистрирована функция получателя по умолчанию')
-		_debWar_CNMR('Старая функция', $sgDefault_Receiver_Function_CNMR & ' - более не актуальна')
-		_debWar_CNMR('Актуальный приёмник', $sFuncName)
-		_debSys_CNMR('Группа по умолчанию', $DEFAULT_GROUP_ID_CONNECTOR)
-		_debSys_CNMR('Текущий скрипт', @ScriptFullPath)
-		_debSys_CNMR('Функция события', '_Function_Receiver_Connector')
+		_debWar_CNMR('Warning', 'the default recipient function was re-registered')
+		_debWar_CNMR('Old function', $sgDefault_Receiver_Function_CNMR & ' - no longer relevant')
+		_debWar_CNMR('The actual receiver', $sFuncName)
+		_debSys_CNMR('Default group', $DEFAULT_GROUP_ID_CONNECTOR)
+		_debSys_CNMR('The current script', @ScriptFullPath)
+		_debSys_CNMR('The event function', '_Function_Receiver_Connector')
 		_debWar_CNMR()
 	EndIf
 	#EndRegion IDB_CNMR
