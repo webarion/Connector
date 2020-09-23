@@ -17,14 +17,14 @@ Local $iLeft = StringRegExp($sThis_ID, '1$', 0) ? ($aProgman[2] / 2) - 585 : ($a
 Global $iRun = False, $ButtonStart, $ButtonStop, $ListViewOut, $ListViewIn
 
 $Form1 = GUICreate("Form " & $sThis_ID, 574, 481, $iLeft, 111)
-$GroupOut = GUICtrlCreateGroup("OUTGOING", 4, 8, 566, 197)
+$GroupOut = GUICtrlCreateGroup("OUTBOX", 4, 8, 566, 197)
 $ListViewOut = GUICtrlCreateListView("Type|Sent message|Type|Returned reply", 12, 28, 550, 169)
 GUICtrlSendMsg(-1, $LVM_SETCOLUMNWIDTH, 0, 75)
 GUICtrlSendMsg(-1, $LVM_SETCOLUMNWIDTH, 1, 165)
 GUICtrlSendMsg(-1, $LVM_SETCOLUMNWIDTH, 2, 75)
 GUICtrlSendMsg(-1, $LVM_SETCOLUMNWIDTH, 3, 205)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
-$GroupIn = GUICtrlCreateGroup("INCOMING", 4, 212, 566, 209)
+$GroupIn = GUICtrlCreateGroup("INBOX", 4, 212, 566, 209)
 $ListViewIn = GUICtrlCreateListView("Send|Type|Received message|Type|Returned response", 12, 232, 550, 181)
 GUICtrlSendMsg(-1, $LVM_SETCOLUMNWIDTH, 0, 50)
 GUICtrlSendMsg(-1, $LVM_SETCOLUMNWIDTH, 1, 75)
