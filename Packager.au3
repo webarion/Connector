@@ -1,18 +1,28 @@
 
-; # О СКРИПТЕ # ==============================================================================================================
-; Название .........: Packager
-; Текущая версия ...: 1.0.0
-; AutoIt Версия ....: 3.3.14.5
-; Описание .........: Helps to compress the connector library, or build it according to individual preferences
-; Автор ............: Webarion
-; Сылки: ...........: http://webarion.ru, http://f91974ik.bget.ru
+
+; # ABOUT THE SCRIPT # =======================================================================================================
+; Name ..............: Packer Connector
+; Current version ...: 1.0.0
+; Program Version....: 3.3.14.5
+; Description .......: helps you compress the connector library or build it according to Your individual preferences
+; Author ............: Webarion
+; Links: ............: http://webarion.ru, http://f91974ik.bget.ru
+; ============================================================================================================================
+
+; # Рћ РЎРљР РРџРўР• # ==============================================================================================================
+; РќР°Р·РІР°РЅРёРµ .........: Packager Connector
+; РўРµРєСѓС‰Р°СЏ РІРµСЂСЃРёСЏ ...: 1.0.0
+; AutoIt Р’РµСЂСЃРёСЏ ....: 3.3.14.5
+; РћРїРёСЃР°РЅРёРµ .........: РџРѕРјРѕРіР°РµС‚ СЃР¶Р°С‚СЊ Р±РёР±Р»РёРѕС‚РµРєСѓ СЃРѕРµРґРёРЅРёС‚РµР»РµР№ РёР»Рё РїРѕСЃС‚СЂРѕРёС‚СЊ РµРµ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ РёРЅРґРёРІРёРґСѓР°Р»СЊРЅС‹РјРё РїСЂРµРґРїРѕС‡С‚РµРЅРёСЏРјРё
+; РђРІС‚РѕСЂ ............: Webarion
+; РЎС‹Р»РєРё: ...........: http://webarion.ru, http://f91974ik.bget.ru
 ; ============================================================================================================================
 
 #include <dev.au3>
 
 #include <Array.au3>
 
-Global $sgPathConnector = @ScriptDir & '\Connector_Full.au3'; path to full connector script
+Global $sgPathConnector = @ScriptDir & '\Connector_Full.au3'; path to full connector script. РїСѓС‚СЊ Рє СЃРєСЂРёРїС‚Сѓ Connector
 
 If Not FileExists($sgPathConnector) Then
 	ConsoleWrite('-Not found ' & $sgPathConnector & @CRLF)
@@ -147,22 +157,22 @@ Func _Packer()
 
 	Local $sNewTextConnector = $sTextConnector
 
-	; улаляем систему вывода информации
+	; СѓРґР°Р»СЏРµРј СЃРёСЃС‚РµРјСѓ РІС‹РІРѕРґР° РёРЅС„РѕСЂРјР°С†РёРё
 	If GUICtrlRead($Checkbox1) = 1 Then
 		$sTextConnector = StringRegExpReplace($sTextConnector, '(?sm)^\h*#Region\h+IDB_CNMR.+?#EndRegion\h+IDB_CNMR.*?\v*$', '')
 	EndIf
 
-	; удаляем описание системных функций
+	; СѓРґР°Р»СЏРµРј РѕРїРёСЃР°РЅРёРµ СЃРёСЃС‚РµРјРЅС‹С… С„СѓРЅРєС†РёР№
 	If GUICtrlRead($Checkbox2) = 1 Then
 		$sTextConnector = StringRegExpReplace($sTextConnector, '(?s);\h?\#SYSTEM FUNCTION\#.+?;\h*=+\v', '')
 	EndIf
 
-	; удаляем описание пользовательских функций
+	; СѓРґР°Р»СЏРµРј РѕРїРёСЃР°РЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРёС… С„СѓРЅРєС†РёР№
 	If GUICtrlRead($Checkbox3) = 1 Then
 		$sTextConnector = StringRegExpReplace($sTextConnector, '(?s);\h?\#USER FUNCTION\#.+?;\h*=+\v', '')
 	EndIf
 
-	; удаляем остальные комментарии и лишние переносы
+	; СѓРґР°Р»СЏРµРј РѕСЃС‚Р°Р»СЊРЅС‹Рµ РєРѕРјРјРµРЅС‚Р°СЂРёРё Рё Р»РёС€РЅРёРµ РїРµСЂРµРЅРѕСЃС‹
 	If GUICtrlRead($Checkbox4) = 1 Then
 		Local $aTextConnector = StringSplit($sTextConnector, @CRLF, 2)
 		Local $n = 0, $iS1 = 0, $iS2 = 0
@@ -181,10 +191,10 @@ Func _Packer()
 		$sTextConnector = StringRegExpReplace($sTextConnector, 'EndFunc', 'EndFunc' & @CRLF)
 	EndIf
 
-	; работаем массивы
-	If GUICtrlRead($Checkbox8) = 1 Then ; не поддерживать
+	; СЂР°Р±РѕС‚Р°РµРј РјР°СЃСЃРёРІС‹
+	If GUICtrlRead($Checkbox8) = 1 Then ; РЅРµ РїРѕРґРґРµСЂР¶РёРІР°С‚СЊ
 		$sTextConnector = StringRegExpReplace($sTextConnector, '(?sm)^\h*#Region\h+ARR_CNMR.+?#EndRegion\h+ARR_CNMR.*?\v*$', '')
-	Else ; поддерживать
+	Else ; РїРѕРґРґРµСЂР¶РёРІР°С‚СЊ
 		If Not GUICtrlRead($Input1) Then GUICtrlSetData($Input1, 5)
 		$sArrCreat = 'Func _ArrCreator_CNMR($a)' & @CRLF & @TAB & 'Local $i = UBound($a)'
 		$sArrDxAdd = 'Func _ArrDxAdd_CNMR(ByRef $r, $a, $v)' & @CRLF & @TAB & 'Local $i = UBound($a)'
@@ -202,7 +212,7 @@ Func _Packer()
 		$sTextConnector = StringRegExpReplace($sTextConnector, '(?si)Func\h+_ArrDxAdd_CNMR\h*\(.+?EndFunc?', $sArrDxAdd)
 	EndIf
 
-	; минимизация имён системных функций
+	; РјРёРЅРёРјРёР·Р°С†РёСЏ РёРјС‘РЅ СЃРёСЃС‚РµРјРЅС‹С… С„СѓРЅРєС†РёР№
 	If GUICtrlRead($Checkbox5) = 1 Then
 		Local $aFunc_GUIRegisterMsg = StringRegExp($sTextConnector, 'GUIRegisterMsg\h*\(\h*\w+?\h*,\h*"(\w+?)"\h*\)', 1)
 		Local $aNamesFunc = StringRegExp($sTextConnector, 'Func\h+(\w+_CNMR)\h*\(', 3)
@@ -212,18 +222,18 @@ Func _Packer()
 				If IsArray($aFunc_GUIRegisterMsg) And UBound($aFunc_GUIRegisterMsg) > 0 Then
 					For $j = 0 To UBound($aFunc_GUIRegisterMsg) - 1
 						If $aFunc_GUIRegisterMsg[$j] = $aNamesFunc[$i] Then
-							$sTextConnector = StringRegExpReplace($sTextConnector, '(?s)(.*?GUIRegisterMsg\h*\(\h*\w+?\h*,\h*")' & $aNamesFunc[$i] & '("\h*\).*)', '$1' & $sNewFuncName & '$2');функ
+							$sTextConnector = StringRegExpReplace($sTextConnector, '(?s)(.*?GUIRegisterMsg\h*\(\h*\w+?\h*,\h*")' & $aNamesFunc[$i] & '("\h*\).*)', '$1' & $sNewFuncName & '$2');С„СѓРЅРє
 						EndIf
 					Next
 				EndIf
-				$sTextConnector = StringRegExpReplace($sTextConnector, '(?s)(.*?;\h*#\h*SYSTEM FUNCTION\h*#\h*=.+?:\h*)(' & $aNamesFunc[$i] & ')(.+?;\h*=)', '$1' & $sNewFuncName & '$3');функ в комм
+				$sTextConnector = StringRegExpReplace($sTextConnector, '(?s)(.*?;\h*#\h*SYSTEM FUNCTION\h*#\h*=.+?:\h*)(' & $aNamesFunc[$i] & ')(.+?;\h*=)', '$1' & $sNewFuncName & '$3');С„СѓРЅРє РІ РєРѕРјРј
 				$sTextConnector = StringRegExpReplace($sTextConnector, $aNamesFunc[$i] & '\h*\(', $sNewFuncName & '(')
 			Next
 		EndIf
 	EndIf
 
 
-	; минимизация имён переменных
+	; РјРёРЅРёРјРёР·Р°С†РёСЏ РёРјС‘РЅ РїРµСЂРµРјРµРЅРЅС‹С…
 	If GUICtrlRead($Checkbox6) = 1 Then
 		Local $sException = '$PROCESS_ALL_ACCESS', $aException = ['StringRegExpReplace', 'StringRegExp']
 		Local $aGlobalVars = StringRegExp($sTextConnector, '(?s)\h*Global\h+(\$\w+)', 3)
@@ -250,9 +260,9 @@ Func _Packer()
 					Local $k = $j < 10 ? 1 : ($j < 255 ? 2 : ($j < 4095 ? 3 : 4))
 					Local $sSm = Hex($j, $k)
 
-					If Not StringInStr($sException, $aVars[$j]) Then; исключаемые из замены переменные
+					If Not StringInStr($sException, $aVars[$j]) Then; РёСЃРєР»СЋС‡Р°РµРјС‹Рµ РёР· Р·Р°РјРµРЅС‹ РїРµСЂРµРјРµРЅРЅС‹Рµ
 						For $e = 0 To UBound($aException) - 1
-							; заменяем переменные, кроме находящихся, внутри кавычек регулярок
+							; Р·Р°РјРµРЅСЏРµРј РїРµСЂРµРјРµРЅРЅС‹Рµ, РєСЂРѕРјРµ РЅР°С…РѕРґСЏС‰РёС…СЃСЏ, РІРЅСѓС‚СЂРё РєР°РІС‹С‡РµРє СЂРµРіСѓР»СЏСЂРѕРє
 							If Not StringRegExp($sTextFunc, $aException[$e] & '\h*\(.+(?:' & "'" & '|")?.+?\' & $aVars[$j] & '.+?(?:' & "'" & '|")?', 0) Then $sTextFunc = StringReplace($sTextFunc, $aVars[$j], '$' & $sSm)
 						Next
 					EndIf
@@ -270,7 +280,7 @@ Func _Packer()
 		Next
 	EndIf
 
-	; максимально сжимаем скрипт
+	; РјР°РєСЃРёРјР°Р»СЊРЅРѕ СЃР¶РёРјР°РµРј СЃРєСЂРёРїС‚
 	If GUICtrlRead($Checkbox7) = 1 Then
 		Local $aTextConnector = StringSplit($sTextConnector, @CRLF, 2)
 		Local $n = 0
@@ -302,7 +312,7 @@ Func _Packer()
 		Return SetError(2, 0, 0)
 	EndIf
 
-	; Запись
+	; Р—Р°РїРёСЃСЊ
 	Local $sPathConnectorMin = @ScriptDir & '\Connector.au3'
 	$hFile = FileOpen($sPathConnectorMin, 8 + 2)
 	If $hFile = -1 Then
@@ -317,12 +327,5 @@ Func _Packer()
 	MsgBox(0, 'Connector Packager', 'The connector is assembled into a script ' & $sPathConnectorMin)
 
 EndFunc   ;==>_Packer
-
-
-
-
-
-
-
 
 
