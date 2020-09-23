@@ -1,0 +1,1 @@
+Build the connector using Packager.au3 and then run both scripts
