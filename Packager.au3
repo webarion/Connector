@@ -2,7 +2,7 @@
 
 ; # ABOUT THE SCRIPT # =======================================================================================================
 ; Name ..............: Packer Connector
-; Current version ...: 1.0.0
+; Current version ...: 1.0.1
 ; Program Version....: 3.3.14.5
 ; Description .......: helps you compress the connector library or build it according to Your individual preferences
 ; Author ............: Webarion
@@ -11,14 +11,12 @@
 
 ; # О СКРИПТЕ # ==============================================================================================================
 ; Название .........: Packager Connector
-; Текущая версия ...: 1.0.0
+; Текущая версия ...: 1.0.1
 ; AutoIt Версия ....: 3.3.14.5
 ; Описание .........: Помогает сжать библиотеку соединителей или построить ее в соответствии с индивидуальными предпочтениями
 ; Автор ............: Webarion
 ; Сылки: ...........: http://webarion.ru, http://f91974ik.bget.ru
 ; ============================================================================================================================
-
-#include <dev.au3>
 
 #include <Array.au3>
 
@@ -327,5 +325,3 @@ Func _Packer()
 	MsgBox(0, 'Connector Packager', 'The connector is assembled into a script ' & $sPathConnectorMin)
 
 EndFunc   ;==>_Packer
-
-
