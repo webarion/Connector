@@ -6,7 +6,7 @@
 ; AutoIt Version ...: 3.3.14.5
 ; Description ......: Serves for data exchange between processes
 ; Author ...........: Webarion
-; Links: ...........: http://webarion.ru, http://f91974ik.bget.ru
+; Site: ............: http://f91974ik.bget.ru
 ; Note .............: Supported Data Types: String, Int32, Int64, Double, Bool, Binary, Hwnd, Ptr, Keyword, Array
 ; Limitations ......: nested arrays are not supported, inside arrays
 ; ===============================================================================================================================
@@ -16,7 +16,7 @@
 ; AutoIt Версия ....: 3.3.14.5
 ; Описание .........: Служит для обмена данными между процессами
 ; Автор ............: Webarion
-; Сылки: ...........: http://webarion.ru, http://f91974ik.bget.ru
+; Сайт: ............: http://f91974ik.bget.ru
 ; Примечание .......: поддерживаемые типы данных: String, Int32, Int64, Double, Bool, Binary, Hwnd, Ptr, Keyword, Array
 ; Ограничения ......: не поддерживаются вложенные массивы, внутри массивов
 ; ===============================================================================================================================
